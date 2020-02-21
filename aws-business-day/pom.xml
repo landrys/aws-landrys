@@ -1,0 +1,45 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.landrys.aws</groupId>
+		<artifactId>aws-landrys-parent</artifactId>
+		<version>1.0.0</version>
+	</parent>
+
+	<artifactId>aws-business-day</artifactId>
+	<name>AWS Business Day</name>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.landrys.aws</groupId>
+			<artifactId>aws-common</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-lambda-java-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.objectlab.kit</groupId>
+			<artifactId>datecalc-common</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.objectlab.kit</groupId>
+			<artifactId>datecalc-joda</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>de.jollyday</groupId>
+			<artifactId>jollyday</artifactId>
+		</dependency>
+	</dependencies>
+</project>

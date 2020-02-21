@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.landrys.aws</groupId>
+    <artifactId>aws-landrys-parent</artifactId>
+    <version>1.0.0</version>
+
+    <url>https://github.com/landrys/aws-landrys</url>
+
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>aws-due-date</module>
+        <module>aws-common</module>
+        <module>aws-business-day</module>
+        <module>aws-dynamo</module>
+    </modules>
+
+    <name>Landrys AWS</name>
+
+    <description> Landrys AWS provides services interfacing with Amazon Web Services ?</description>
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	<site.deploy.url>sites.google.com/view/11nator</site.deploy.url>
+        <github.global.server>github</github.global.server>
+        <github.global.oauth2Token>${env.GITHUB_OAUTH_TOKEN}</github.global.oauth2Token>
+        <version.junit>4.11</version.junit>
+	<version.aws-java-sdk>1.11.129</version.aws-java-sdk>
+	<version.joda-time>2.8.2</version.joda-time>
+	<version.aws-lambda-java-core>1.2.0</version.aws-lambda-java-core>
+	<version.datecalc-common>1.4.0</version.datecalc-common>
+	<version.datecalc-joda>1.4.0</version.datecalc-joda>
+	<version.jollyday>0.4.7.3</version.jollyday>
+    </properties>
+
+    <inceptionYear>2006</inceptionYear>
+
+    <organization>
+        <name>Landrys</name>
+        <url>http://www.landrys.com/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>fabio</id>
+            <name>Fabio Piergentili</name>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <organization>Landrsy Inc</organization>
+            <organizationUrl>http://www.landrys.com/</organizationUrl>
+            <email>fpiergen@landrys.com</email>
+            <timezone>US/East</timezone>
+        </developer>
+    </developers>
+
+    <dependencyManagement>
+	    <dependencies>
+		    <dependency>
+			    <groupId>net.objectlab.kit</groupId>
+			    <artifactId>datecalc-common</artifactId>
+			    <version>${version.datecalc-common}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>net.objectlab.kit</groupId>
+			    <artifactId>datecalc-joda</artifactId>
+			    <version>${version.datecalc-joda}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>de.jollyday</groupId>
+			    <artifactId>jollyday</artifactId>
+			    <version>${version.jollyday}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>junit</groupId>
+			    <artifactId>junit</artifactId>
+			    <version>${version.junit}</version>
+			    <scope>test</scope>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.landrys.aws</groupId>
+			    <artifactId>aws-due-date</artifactId>
+			    <version>${project.version}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.landrys.aws</groupId>
+			    <artifactId>aws-business-day</artifactId>
+			    <version>${project.version}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.landrys.aws</groupId>
+			    <artifactId>aws-common</artifactId>
+			    <version>${project.version}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.landrys.aws</groupId>
+			    <artifactId>aws-dynamo</artifactId>
+			    <version>${project.version}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.amazonaws</groupId>
+			    <artifactId>aws-java-sdk-bom</artifactId>
+			    <version>${version.aws-java-sdk}</version>
+			    <type>pom</type>
+			    <scope>import</scope>
+		    </dependency>
+		    <dependency>
+			    <groupId>joda-time</groupId>
+			    <artifactId>joda-time</artifactId>
+			    <version>${version.joda-time}</version>
+		    </dependency>
+		    <dependency>
+			    <groupId>com.amazonaws</groupId>
+			    <artifactId>aws-lambda-java-core</artifactId>
+			    <version>${version.aws-lambda-java-core}</version>
+			    <scope>compile</scope>
+		    </dependency>
+	    </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Automatic-Module-Name>com.landrys.aws</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+                    <skipTests>${skip.acceptance.test}</skipTests>
+                    <excludes>
+                        <excludes>**/RunSingleTest.java</excludes>
+                        <excludes>**/perf/**</excludes>
+                    </excludes>
+                </configuration>
+            </plugin>
+	    <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>2.2</version>
+            </plugin>
+	    -->
+        </plugins>
+    </build>
+
+</project>

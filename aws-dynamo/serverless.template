@@ -1,0 +1,23 @@
+{
+  "Description": "A lambda function that retrieves all entries of the vendor ship time table.",
+  "Resources": {
+    "GetVendorShipTimes": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "GetVendorShipTimes",
+        "Policies": [
+          "AmazonDynamoDBReadOnlyAccess"
+        ]
+      }
+    },
+   "GetVendorShipTimeSupports": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "GetVendorShipTimeSupports",
+        "Policies": [
+          "AmazonDynamoDBReadOnlyAccess"
+        ]
+      }
+    }
+  }
+}
