@@ -16,4 +16,12 @@ The procedure to do this goes as follows:
 
 
 
+The function is now updated or created and the code is deployed to the '$LATEST' Version of the Lambda function. At this point we can create a version snapshot from this latest version via the AWS web interface or the CLI. Before we do that let's see what versions exist now.
 
+* aws lambda list-versions-by-function  --profile lambdaAdmin    --function-name dueDate
+
+Create the new version:
+* `aws lambda publish-version  --profile lambdaAdmin    --function-name dueDate --description "My New Version"`
+
+The Version can be viewed from response or by the following command:
+* aws lambda list-versions-by-function  --profile lambdaAdmin    --function-name dueDateAWSCLI
