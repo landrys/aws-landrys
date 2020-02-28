@@ -1,5 +1,5 @@
 # aws-landrys
-Amazon Web Services Support.
+Due Date Using Amazon Web Services
 
 ## Summary
 These modules contain code supporting the Due Date service. In order to deploy the code we are using the AWS cli interface. 
@@ -33,4 +33,8 @@ At this point we create an alias or use the alias we have. We can list aliases i
 * `aws lambda list-aliases  --profile lambdaAdmin    --function-name dueDate`
 
 Our Eleven Web client uses this alias to call the due date service. Once you want to go live attach this alias to any version you want. To do this use the CLI command:
-* TODO:`aws lambda update-alias  --profile lambdaAdmin    --function-name dueDate -name PROD --revision-id ?`
+* `aws lambda update-alias  --profile lambdaAdmin    --function-name dueDate -name PROD --function-version <versionNumber>`
+
+## Testing via CLI
+
+* aws lambda invoke --profile lambdaAdmin --function-name dueDate --qualifier PROD --payload '{"store": "Natick","vendorShipTimeIds": [1]}' response.json
