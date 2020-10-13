@@ -27,7 +27,7 @@
 	<site.deploy.url>sites.google.com/view/11nator</site.deploy.url>
         <github.global.server>github</github.global.server>
         <github.global.oauth2Token>${env.GITHUB_OAUTH_TOKEN}</github.global.oauth2Token>
-        <version.junit>4.11</version.junit>
+        <version.junit>4.13.1</version.junit>
 	<version.aws-java-sdk>1.11.129</version.aws-java-sdk>
 	<version.joda-time>2.8.2</version.joda-time>
 	<version.aws-lambda-java-core>1.2.0</version.aws-lambda-java-core>
