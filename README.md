@@ -1,3 +1,7 @@
+# TODO
+  
+  * Clean out the EFS system.
+
 # aws-landrys
 Due Date Using Amazon Web Services
 
@@ -38,3 +42,27 @@ Our Eleven Web client uses this alias to call the due date service. Once you wan
 ## Testing via CLI
 
 * aws lambda invoke --profile lambdaAdmin --function-name dueDate --qualifier PROD --payload '{"store": "Natick","vendorShipTimeIds": [1]}' response.json
+
+## Testing via MVN 
+
+* From parent directory -->  `mvn test -Dtest=LambdaFunctionHandlerTest#testMe -pl aws-dynamo`
+
+## Notes from previous
+TODO: get the dueDataAWSClI workignusing S3 storage so that it is like the one we have. Do we need to do this...?
+      If you do not specify and S3 in the aws cli create-function it goes to a place you cannot manage or see. See docs in AWS.
+
+After you make changes to dependent projects and do an install do the following
+mvn  -Dmaven.test.skip=true package
+mvn  -DskipTests=true package
+
+aws lambda create-function  --profile lambdaAdmin    --function-name dueDateAWSCLI      --runtime java11      --zip-file fileb://aws-due-date-4.0.0.jar      --handler com.landry.aws.lambda.duedate.LambdaFunctionHandler      --role arn:aws:iam::419745589400:role/lambda_basic_execution
+
+aws lambda update-function-code  --profile lambdaAdmin    --function-name dueDateAWSCLI   --zip-file fileb://aws-due-date-4.0.0.jar
+
+aws lambda invoke --profile lambdaAdmin --function-name dueDateAWSCLI --payload '{"store": "Natick","vendorShipTimeIds": [1]}' response.json
+
+aws lambda publish-version  --profile lambdaAdmin    --function-name dueDateAWSCLI --description "First try"
+aws lambda create-alias  --profile lambdaAdmin  --function-version 1  --function-name dueDateAWSCLI --name myAlias --description myAliasToTryDesc
+
+python -m json.tool response.json
+

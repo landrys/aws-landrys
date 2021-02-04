@@ -17,6 +17,7 @@ import com.landry.aws.lambda.dynamo.dao.DynamoVendorShipTimeSupportDAO;
 import com.landry.aws.lambda.dynamo.dao.VendorShipTimeSupportDAO;
 import com.landry.aws.lambda.dynamo.domain.LCOAuthClient;
 import com.landry.aws.lambda.dynamo.domain.VendorShipTimeSupport;
+import org.joda.time.LocalDate;
 
 /**
  * A simple test harness for locally invoking your Lambda function handler.
@@ -50,6 +51,17 @@ public class LambdaFunctionHandlerTest {
 		for ( VendorShipTimeSupport model : out )
 			System.out.println(model);
 	}
+	@Test
+	public void testMe() throws Exception {
+		System.out.println("Hello");
+		LocalDate myDate = new LocalDate("2020-03-02");
+		System.out.println(myDate.getChronology());
+
+		System.out.println(myDate);
+
+	}
+
+
 
 	@Test
 	public void testVSTSFindBySupport() throws Exception {
